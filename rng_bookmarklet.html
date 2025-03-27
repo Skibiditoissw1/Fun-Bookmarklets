@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RNG Aura Bookmarklet</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+        a { display: inline-block; padding: 10px 20px; background: black; color: white; text-decoration: none; border-radius: 5px; font-size: 18px; }
+        a:hover { background: darkgray; }
+    </style>
+</head>
+<body>
+    <h1>🎲 RNG Aura Bookmarklet 🎲</h1>
+    <p>Drag this button into your bookmarks bar to use the RNG Aura!</p>
+    <a href="javascript:(function(){let lastMove=0,auraHistory=[];function showAuraTracker(){let e=document.getElementById('aura-tracker');if(e)return void(e.style.display='none'===e.style.display?'block':'none');let t=document.createElement('div');t.id='aura-tracker',t.style.position='fixed',t.style.top='10px',t.style.right='10px',t.style.padding='10px',t.style.background='rgba(0,0,0,0.8)',t.style.color='white',t.style.border='1px solid white',t.style.fontSize='14px',t.style.maxHeight='200px',t.style.overflowY='auto',t.style.zIndex='9999';let o=document.createElement('button');o.textContent='Close',o.style.display='block',o.style.marginBottom='5px',o.onclick=()=>{t.style.display='none'};let l=document.createElement('div');l.id='aura-content',t.appendChild(o),t.appendChild(l),document.body.appendChild(t)}function generateAura(){let e=Math.floor(256*Math.random())+1,t,o;return e<=80?(t='Common',o='gray'):e<=140?(t='Uncommon',o='green'):e<=180?(t='Rare',o='blue'):e<=210?(t='Super Rare',o='cyan'):e<=230?(t='Epic',o='purple'):e<=245?(t='Mythic',o='orange'):e<=252?(t='Legendary',o='gold'):e<=254?(t='Divine',o='white'):255===e?(t='Ancient',o='red'):(t='Impossible',o='black'),auraHistory.push(t),auraHistory.length>50&&auraHistory.shift(),{aura:t,color:o}}document.addEventListener('mousemove',function(e){let t=Date.now();if(t-lastMove<300)return;lastMove=t;let{o,a}=generateAura(),l=document.createElement('span');l.textContent=o,l.style.position='fixed',l.style.left=e.clientX+'px',l.style.top=e.clientY+'px',l.style.fontSize='16px',l.style.color=a,l.style.pointerEvents='none',document.body.appendChild(l),setTimeout(()=>{l.remove()},1e3)});let trackerBtn=document.createElement('button');trackerBtn.textContent='Show Auras',trackerBtn.style.position='fixed',trackerBtn.style.bottom='10px',trackerBtn.style.right='10px',trackerBtn.style.padding='5px 10px',trackerBtn.style.background='black',trackerBtn.style.color='white',trackerBtn.style.border='1px solid white',trackerBtn.style.cursor='pointer',trackerBtn.onclick=function(){showAuraTracker();let e=document.getElementById('aura-content');e.innerHTML=auraHistory.map(e=>'<div>'+e+'</div>').join('')},document.body.appendChild(trackerBtn)})();">📜 Drag Me! 📜</a>
+</body>
+</html>
